@@ -1,0 +1,117 @@
+---
+title: "Building Type-Safe Applications with TypeScript"
+slug: "building-with-typescript"
+summary: "Discover how TypeScript can improve your development workflow with static typing, better tooling, and fewer runtime errors."
+date: "2026-04-10"
+tags: ["TypeScript", "JavaScript", "Web Development"]
+thumbnail: "/images/typescript-thumbnail.jpg"
+relatedPosts: ["getting-started-with-nextjs"]
+---
+
+# Building Type-Safe Applications with TypeScript
+
+TypeScript has become the de facto standard for building large-scale JavaScript applications. Let's explore why and how to leverage its power.
+
+## What is TypeScript?
+
+TypeScript is a strongly typed programming language that builds on JavaScript. It adds optional static typing and class-based object-oriented programming.
+
+## Key Benefits
+
+### 1. Catch Errors Early
+
+TypeScript catches errors at compile time rather than runtime:
+
+```typescript
+function greet(name: string) {
+  return `Hello, ${name}!`
+}
+
+greet(123) // Error: Argument of type 'number' is not assignable to parameter of type 'string'
+```
+
+### 2. Better IDE Support
+
+With TypeScript, you get:
+
+- **Intelligent code completion** - Know what properties and methods are available
+- **Refactoring support** - Safely rename symbols across your codebase
+- **Inline documentation** - Hover over symbols to see their types
+
+### 3. Self-Documenting Code
+
+Types serve as inline documentation:
+
+```typescript
+interface User {
+  id: string
+  name: string
+  email: string
+  createdAt: Date
+}
+
+function createUser(data: Omit<User, 'id' | 'createdAt'>): User {
+  return {
+    ...data,
+    id: crypto.randomUUID(),
+    createdAt: new Date()
+  }
+}
+```
+
+## TypeScript with React
+
+TypeScript shines when building React applications:
+
+```typescript
+interface ButtonProps {
+  variant: 'primary' | 'secondary' | 'danger'
+  size?: 'sm' | 'md' | 'lg'
+  children: React.ReactNode
+  onClick?: () => void
+}
+
+function Button({ variant, size = 'md', children, onClick }: ButtonProps) {
+  return (
+    <button className={`btn btn-${variant} btn-${size}`} onClick={onClick}>
+      {children}
+    </button>
+  )
+}
+```
+
+## Advanced Patterns
+
+### Generics
+
+Create reusable, type-safe components:
+
+```typescript
+function useLocalStorage<T>(key: string, initialValue: T) {
+  const [value, setValue] = useState<T>(() => {
+    const stored = localStorage.getItem(key)
+    return stored ? JSON.parse(stored) : initialValue
+  })
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value))
+  }, [key, value])
+
+  return [value, setValue] as const
+}
+```
+
+### Utility Types
+
+TypeScript provides powerful utility types:
+
+```typescript
+type Readonly<T> = { readonly [P in keyof T]: T[P] }
+type Partial<T> = { [P in keyof T]?: T[P] }
+type Pick<T, K extends keyof T> = { [P in K]: T[P] }
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+```
+
+## Conclusion
+
+TypeScript is an investment that pays dividends in code quality, developer experience, and maintainability. Start gradually by adding types to your existing JavaScript projects.

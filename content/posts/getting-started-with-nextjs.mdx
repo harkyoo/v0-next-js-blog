@@ -1,0 +1,95 @@
+---
+title: "Getting Started with Next.js 16"
+slug: "getting-started-with-nextjs"
+summary: "Learn the fundamentals of Next.js 16 and build your first modern web application with the App Router."
+date: "2026-04-15"
+tags: ["Next.js", "React", "Web Development"]
+thumbnail: "/images/nextjs-thumbnail.jpg"
+relatedPosts: ["building-with-typescript", "mastering-tailwind-css"]
+---
+
+# Getting Started with Next.js 16
+
+Next.js has revolutionized how we build React applications. With the introduction of the App Router and React Server Components, building fast, scalable web applications has never been easier.
+
+## Why Next.js?
+
+Next.js provides a complete solution for building web applications:
+
+- **Server-Side Rendering (SSR)** - Better SEO and initial load performance
+- **Static Site Generation (SSG)** - Pre-render pages at build time
+- **API Routes** - Build your backend in the same project
+- **File-based Routing** - Intuitive page creation
+- **Built-in Optimizations** - Image, font, and script optimization
+
+## Setting Up Your First Project
+
+Getting started is straightforward. Run the following command:
+
+```bash
+npx create-next-app@latest my-app
+```
+
+This will scaffold a new Next.js project with all the latest features.
+
+## The App Router
+
+The App Router is the recommended way to build Next.js applications. It uses a `app/` directory structure:
+
+```
+app/
+├── page.tsx          # Home page
+├── layout.tsx        # Root layout
+├── about/
+│   └── page.tsx      # About page
+└── blog/
+    ├── page.tsx      # Blog listing
+    └── [slug]/
+        └── page.tsx  # Individual blog post
+```
+
+## Server Components
+
+By default, all components in the App Router are Server Components. This means they render on the server and send HTML to the client:
+
+```tsx
+// This runs on the server
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data')
+  const posts = await data.json()
+  
+  return (
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## Client Components
+
+When you need interactivity, use the `"use client"` directive:
+
+```tsx
+"use client"
+
+import { useState } from 'react'
+
+export default function Counter() {
+  const [count, setCount] = useState(0)
+  
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Count: {count}
+    </button>
+  )
+}
+```
+
+## Conclusion
+
+Next.js 16 provides everything you need to build modern web applications. Start with the basics, and gradually explore more advanced features as your needs grow.
+
+Happy coding! 🚀

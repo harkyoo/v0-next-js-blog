@@ -1,0 +1,192 @@
+---
+title: "Understanding React Server Components"
+slug: "react-server-components"
+summary: "Deep dive into React Server Components, how they work, and when to use them in your applications."
+date: "2026-03-20"
+tags: ["React", "Next.js", "Performance"]
+thumbnail: "/images/rsc-thumbnail.jpg"
+relatedPosts: ["getting-started-with-nextjs", "building-with-typescript"]
+---
+
+# Understanding React Server Components
+
+React Server Components (RSC) represent a paradigm shift in how we build React applications. Let&apos;s explore what they are and how to use them effectively.
+
+## What Are Server Components?
+
+Server Components are React components that render exclusively on the server. They never ship JavaScript to the client and can directly access backend resources.
+
+### Key Characteristics
+
+- **Zero client-side JavaScript** - Smaller bundle sizes
+- **Direct backend access** - Database queries, file system
+- **Automatic code splitting** - Client components load on demand
+- **Streaming** - Progressive rendering
+
+## Server vs Client Components
+
+### Server Components (Default)
+
+```tsx
+// app/posts/page.tsx
+// This is a Server Component by default
+
+import { db } from '@/lib/database'
+
+export default async function PostsPage() {
+  const posts = await db.posts.findMany()
+  
+  return (
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+### Client Components
+
+```tsx
+"use client"
+
+// Must use "use client" directive for interactivity
+
+import { useState } from 'react'
+
+export function LikeButton({ postId }: { postId: string }) {
+  const [likes, setLikes] = useState(0)
+  
+  return (
+    <button onClick={() => setLikes(l => l + 1)}>
+      ❤️ {likes}
+    </button>
+  )
+}
+```
+
+## Composition Patterns
+
+### Passing Server Data to Client Components
+
+```tsx
+// Server Component
+async function PostPage({ id }: { id: string }) {
+  const post = await getPost(id)
+  
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+      {/* Client component receives serializable data */}
+      <LikeButton initialLikes={post.likes} postId={id} />
+    </article>
+  )
+}
+```
+
+### Children Pattern
+
+Pass Server Components as children to Client Components:
+
+```tsx
+// Server Component
+export default function Page() {
+  return (
+    <ClientWrapper>
+      {/* This Server Component renders on the server */}
+      <ExpensiveServerComponent />
+    </ClientWrapper>
+  )
+}
+```
+
+```tsx
+"use client"
+
+// Client Component
+export function ClientWrapper({ children }: { children: React.ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false)
+  
+  return (
+    <div>
+      <button onClick={() => setIsOpen(!isOpen)}>Toggle</button>
+      {isOpen && children}
+    </div>
+  )
+}
+```
+
+## Performance Benefits
+
+### Before RSC
+
+```
+Page Load:
+1. Download HTML shell
+2. Download JavaScript bundle (including React, components, libraries)
+3. Hydrate components
+4. Fetch data from API
+5. Re-render with data
+```
+
+### With RSC
+
+```
+Page Load:
+1. Server renders HTML with data
+2. Stream HTML to client
+3. Download only Client Component JavaScript
+4. Hydrate only interactive parts
+```
+
+## Best Practices
+
+### 1. Default to Server Components
+
+Only add `"use client"` when you need:
+
+- Event handlers (onClick, onChange)
+- useState, useEffect, or other hooks
+- Browser-only APIs
+
+### 2. Keep Client Components Small
+
+Push interactivity to the leaves of your component tree:
+
+```tsx
+// ❌ Don't make the whole page a Client Component
+"use client"
+export default function Page() { ... }
+
+// ✅ Only make interactive parts Client Components
+export default function Page() {
+  return (
+    <article>
+      <StaticContent />
+      <InteractiveWidget /> {/* Only this is "use client" */}
+    </article>
+  )
+}
+```
+
+### 3. Colocate Data Fetching
+
+Fetch data where it&apos;s needed:
+
+```tsx
+async function UserProfile({ userId }: { userId: string }) {
+  const user = await getUser(userId)
+  return <div>{user.name}</div>
+}
+
+async function UserPosts({ userId }: { userId: string }) {
+  const posts = await getUserPosts(userId)
+  return <PostList posts={posts} />
+}
+```
+
+## Conclusion
+
+React Server Components offer a powerful new model for building performant React applications. By understanding when to use Server vs Client Components, you can create faster, more efficient user experiences.

@@ -1,0 +1,133 @@
+---
+title: "Mastering Tailwind CSS for Modern UIs"
+slug: "mastering-tailwind-css"
+summary: "A comprehensive guide to building beautiful, responsive user interfaces with Tailwind CSS utility classes."
+date: "2026-04-05"
+tags: ["CSS", "Tailwind", "Web Development", "Design"]
+thumbnail: "/images/tailwind-thumbnail.jpg"
+relatedPosts: ["getting-started-with-nextjs", "design-systems-guide"]
+---
+
+# Mastering Tailwind CSS for Modern UIs
+
+Tailwind CSS has transformed how developers approach styling. Instead of writing custom CSS, you compose designs using utility classes.
+
+## Why Tailwind?
+
+Traditional CSS approaches have challenges:
+
+- **Naming things is hard** - Coming up with class names for every element
+- **CSS grows indefinitely** - Stylesheets become bloated over time
+- **Fear of changes** - Worried about breaking existing styles
+
+Tailwind solves these by providing a constrained set of utilities.
+
+## Core Concepts
+
+### Utility-First
+
+Build complex components from small utility classes:
+
+```html
+<div class="flex items-center gap-4 rounded-lg bg-white p-6 shadow-md">
+  <img class="h-12 w-12 rounded-full" src="/avatar.jpg" alt="Avatar" />
+  <div>
+    <h3 class="text-lg font-semibold text-gray-900">John Doe</h3>
+    <p class="text-gray-600">Software Engineer</p>
+  </div>
+</div>
+```
+
+### Responsive Design
+
+Use breakpoint prefixes for responsive layouts:
+
+```html
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <!-- Cards -->
+</div>
+```
+
+### State Variants
+
+Style different states with prefixes:
+
+```html
+<button class="bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 active:bg-blue-700">
+  Click me
+</button>
+```
+
+## Best Practices
+
+### 1. Extract Components
+
+When patterns repeat, extract them into components:
+
+```tsx
+function Card({ children }) {
+  return (
+    <div className="rounded-xl bg-white p-6 shadow-lg">
+      {children}
+    </div>
+  )
+}
+```
+
+### 2. Use Design Tokens
+
+Configure your design system in `tailwind.config.js`:
+
+```javascript
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          50: '#eff6ff',
+          500: '#3b82f6',
+          900: '#1e3a8a',
+        }
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+```
+
+### 3. Dark Mode
+
+Tailwind makes dark mode simple:
+
+```html
+<div class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
+  Content that adapts to color scheme
+</div>
+```
+
+## Advanced Techniques
+
+### Arbitrary Values
+
+When you need one-off values:
+
+```html
+<div class="top-[117px] grid-cols-[1fr_2fr_1fr]">
+```
+
+### Group and Peer Modifiers
+
+Style children based on parent state:
+
+```html
+<div class="group">
+  <img class="transition group-hover:scale-110" />
+  <h3 class="group-hover:text-blue-500">Title</h3>
+</div>
+```
+
+## Conclusion
+
+Tailwind CSS offers a productive way to build modern interfaces. Its utility-first approach, combined with excellent documentation and tooling, makes it a joy to use.
