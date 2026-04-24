@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v
 
 ## Built with v0
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo.
 
 [Continue working on v0 →](https://v0.app/chat/projects/prj_UktXkPt8cwSOANgk6T6hRpujXz41)
 
@@ -23,6 +23,21 @@ pnpm dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+## GitHub Pages Deployment
+
+This project is configured to deploy a static export to GitHub Pages with GitHub Actions.
+
+- `main` is the source branch
+- the workflow builds the site and publishes the generated `out/` directory to the `deploy` branch
+- `next.config.mjs` automatically adds the repository base path during GitHub Actions builds so project pages work under `https://<user>.github.io/<repo>/`
+
+After pushing the workflow to GitHub, set Pages to publish from:
+
+- Branch: `deploy`
+- Folder: `/ (root)`
+
+You can also trigger the workflow manually from the Actions tab with `workflow_dispatch`.
 
 ## Learn More
 

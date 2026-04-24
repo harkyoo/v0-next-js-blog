@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { MDXContent } from '@/components/blog/mdx-content'
 import { RelatedPosts } from '@/components/blog/related-posts'
 import { getPostBySlug, getAllPosts, getRelatedPosts } from '@/lib/posts'
+import { withBasePath } from '@/lib/utils'
 
 interface PostPageProps {
   params: Promise<{ slug: string }>
@@ -89,7 +90,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
         <div className="relative mb-10 aspect-video overflow-hidden rounded-xl">
           <Image
-            src={thumbnail}
+            src={withBasePath(thumbnail)}
             alt={title}
             fill
             className="object-cover"

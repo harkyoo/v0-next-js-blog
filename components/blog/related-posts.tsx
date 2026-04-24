@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import type { Post } from '@/lib/types'
+import { withBasePath } from '@/lib/utils'
 
 interface RelatedPostsProps {
   posts: Post[]
@@ -25,7 +26,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
             <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-md hover:ring-1 hover:ring-primary/20">
               <div className="relative aspect-video overflow-hidden">
                 <Image
-                  src={post.frontmatter.thumbnail}
+                  src={withBasePath(post.frontmatter.thumbnail)}
                   alt={post.frontmatter.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"

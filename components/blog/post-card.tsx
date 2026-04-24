@@ -4,6 +4,7 @@ import { Calendar, Clock } from 'lucide-react'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import type { Post } from '@/lib/types'
+import { withBasePath } from '@/lib/utils'
 
 interface PostCardProps {
   post: Post
@@ -24,7 +25,7 @@ export function PostCard({ post }: PostCardProps) {
       <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-lg hover:ring-1 hover:ring-primary/20">
         <div className="relative aspect-video overflow-hidden">
           <Image
-            src={thumbnail}
+            src={withBasePath(thumbnail)}
             alt={title}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"

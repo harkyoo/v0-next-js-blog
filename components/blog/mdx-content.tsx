@@ -1,4 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import { withBasePath } from '@/lib/utils'
 
 interface MDXContentProps {
   content: string
@@ -56,6 +57,12 @@ const components = {
       target={props.href?.startsWith('http') ? '_blank' : undefined}
       rel={props.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
       {...props}
+    />
+  ),
+  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    <img
+      {...props}
+      src={props.src ? withBasePath(props.src) : props.src}
     />
   ),
   strong: (props: React.HTMLAttributes<HTMLElement>) => (
