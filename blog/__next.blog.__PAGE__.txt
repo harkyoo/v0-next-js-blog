@@ -1,0 +1,838 @@
+1:"$Sreact.fragment"
+2:I[76825,["/v0-next-js-blog/_next/static/chunks/15a~lu5qxe4z5.js","/v0-next-js-blog/_next/static/chunks/03ug_ih8u~oib.js","/v0-next-js-blog/_next/static/chunks/01q4pe1j~nxfm.js","/v0-next-js-blog/_next/static/chunks/01j9r7hdna_aw.js","/v0-next-js-blog/_next/static/chunks/11qrehx~p06m..js"],"PostList"]
+c:I[46608,["/v0-next-js-blog/_next/static/chunks/15a~lu5qxe4z5.js","/v0-next-js-blog/_next/static/chunks/03ug_ih8u~oib.js"],"OutletBoundary"]
+d:"$Sreact.suspense"
+3:T14fb,
+# Prompt Engineering Fundamentals for Reliable AI Outputs
+
+Prompt engineering is the practice of designing inputs that help AI systems produce more useful, consistent, and trustworthy outputs. As language models become part of everyday product workflows, writing a good prompt starts to look a lot like writing a good interface contract.
+
+## Why Prompt Engineering Matters
+
+A vague prompt often leads to vague output. A well-structured prompt improves:
+
+- **Clarity** - the model understands what you want
+- **Consistency** - repeated runs stay closer to the same format and quality bar
+- **Efficiency** - less back-and-forth and fewer retries
+- **Safety** - clearer boundaries reduce off-target responses
+
+In practice, prompt engineering is less about clever tricks and more about reducing ambiguity.
+
+## The Anatomy of a Strong Prompt
+
+Most effective prompts include a few common ingredients:
+
+### 1. Role or Perspective
+
+Tell the model what kind of assistant it should act like:
+
+```text
+You are a technical writer helping frontend teams document design decisions.
+```
+
+This helps set tone, level of detail, and domain focus.
+
+### 2. Clear Task
+
+State exactly what you want the model to do:
+
+```text
+Summarize this pull request in 5 bullet points for a product manager.
+```
+
+### 3. Context
+
+Provide the information needed to complete the task well:
+
+```text
+The PR adds server-side filtering, removes legacy API routes, and updates analytics events.
+```
+
+### 4. Constraints
+
+Set output limits and rules:
+
+```text
+Keep the summary under 120 words. Avoid code. Mention user-facing impact first.
+```
+
+### 5. Output Format
+
+Be explicit about the structure you expect:
+
+```text
+Return JSON with keys: title, summary, risks, follow_up.
+```
+
+## A Weak Prompt vs a Better Prompt
+
+Here is a common weak prompt:
+
+```text
+Write about prompt engineering.
+```
+
+A stronger version gives the model more direction:
+
+```text
+Write a beginner-friendly blog post about prompt engineering.
+Audience: frontend developers who are new to AI.
+Include: definition, 5 practical techniques, one bad prompt example, one improved prompt example.
+Tone: clear and professional.
+Length: 800 to 1,000 words.
+```
+
+The second prompt does not guarantee perfection, but it narrows the target enough that the first draft is usually much closer to usable.
+
+## Practical Techniques
+
+### Be Specific About the Goal
+
+Instead of asking for "ideas," ask for the kind of ideas you need:
+
+```text
+Suggest 10 landing page headline ideas for a developer blog focused on React and TypeScript.
+```
+
+### Provide Examples
+
+Examples are especially helpful when format matters:
+
+```text
+Use this format for each item:
+- Problem
+- Why it matters
+- Recommended fix
+```
+
+This technique is powerful when generating changelogs, QA test cases, or content briefs.
+
+### Break Complex Work Into Steps
+
+Large prompts often improve when split into stages:
+
+1. extract facts
+2. organize the facts
+3. generate the final response
+
+This mirrors how we break software into smaller, testable units.
+
+### Ask for Structured Output
+
+Structured responses are easier to validate and reuse in applications:
+
+```json
+{
+  "audience": "engineering managers",
+  "tone": "concise",
+  "key_points": []
+}
+```
+
+This is one reason prompt engineering pairs well with typed systems and content pipelines.
+
+### Add Evaluation Criteria
+
+Tell the model how success should be judged:
+
+```text
+The answer should be actionable, avoid hype, and include at least one concrete example.
+```
+
+This acts like a lightweight acceptance test for the output.
+
+## Common Mistakes
+
+Some prompt failures come from patterns that are easy to miss:
+
+- **Too little context** - the model fills gaps with generic assumptions
+- **Too many goals at once** - the response becomes scattered
+- **Unclear audience** - the explanation lands at the wrong level
+- **No format guidance** - output is harder to parse or publish
+- **No iteration loop** - teams expect a perfect first draft instead of refining prompts over time
+
+## Prompt Engineering in Real Products
+
+Prompt engineering becomes more valuable when it is treated as part of system design rather than a one-off writing task.
+
+For example:
+
+- In a content platform, prompts can standardize article summaries and metadata generation.
+- In a support workflow, prompts can classify tickets into predictable categories.
+- In a developer tool, prompts can transform repository context into release notes or architecture docs.
+
+This is where prompt design starts to overlap with ideas from type safety and server-driven architectures: define inputs carefully, constrain outputs, and make behavior easier to reason about.
+
+## A Repeatable Prompt Template
+
+When starting from scratch, this simple template works well:
+
+```text
+You are [role].
+
+Task:
+[what to do]
+
+Context:
+[relevant background]
+
+Requirements:
+- [constraint 1]
+- [constraint 2]
+
+Output format:
+[exact structure]
+```
+
+It is not fancy, but it is reliable, which is usually the better tradeoff.
+
+## Conclusion
+
+Prompt engineering is really about communication design. The better we define intent, context, constraints, and format, the more dependable AI outputs become.
+
+As you build AI-assisted features, treat prompts the way you treat APIs and components: design them intentionally, test them with real inputs, and refine them based on how they perform in production.
+4:T8c1,
+# Getting Started with Next.js 16
+
+Next.js has revolutionized how we build React applications. With the introduction of the App Router and React Server Components, building fast, scalable web applications has never been easier.
+
+## Why Next.js?
+
+Next.js provides a complete solution for building web applications:
+
+- **Server-Side Rendering (SSR)** - Better SEO and initial load performance
+- **Static Site Generation (SSG)** - Pre-render pages at build time
+- **API Routes** - Build your backend in the same project
+- **File-based Routing** - Intuitive page creation
+- **Built-in Optimizations** - Image, font, and script optimization
+
+## Setting Up Your First Project
+
+Getting started is straightforward. Run the following command:
+
+```bash
+npx create-next-app@latest my-app
+```
+
+This will scaffold a new Next.js project with all the latest features.
+
+## The App Router
+
+The App Router is the recommended way to build Next.js applications. It uses a `app/` directory structure:
+
+```
+app/
+├── page.tsx          # Home page
+├── layout.tsx        # Root layout
+├── about/
+│   └── page.tsx      # About page
+└── blog/
+    ├── page.tsx      # Blog listing
+    └── [slug]/
+        └── page.tsx  # Individual blog post
+```
+
+## Server Components
+
+By default, all components in the App Router are Server Components. This means they render on the server and send HTML to the client:
+
+```tsx
+// This runs on the server
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data')
+  const posts = await data.json()
+  
+  return (
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## Client Components
+
+When you need interactivity, use the `"use client"` directive:
+
+```tsx
+"use client"
+
+import { useState } from 'react'
+
+export default function Counter() {
+  const [count, setCount] = useState(0)
+  
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Count: {count}
+    </button>
+  )
+}
+```
+
+## Conclusion
+
+Next.js 16 provides everything you need to build modern web applications. Start with the basics, and gradually explore more advanced features as your needs grow.
+
+Happy coding! 🚀
+5:Ta49,
+# Building Type-Safe Applications with TypeScript
+
+TypeScript has become the de facto standard for building large-scale JavaScript applications. Let's explore why and how to leverage its power.
+
+## What is TypeScript?
+
+TypeScript is a strongly typed programming language that builds on JavaScript. It adds optional static typing and class-based object-oriented programming.
+
+## Key Benefits
+
+### 1. Catch Errors Early
+
+TypeScript catches errors at compile time rather than runtime:
+
+```typescript
+function greet(name: string) {
+  return `Hello, ${name}!`
+}
+
+greet(123) // Error: Argument of type 'number' is not assignable to parameter of type 'string'
+```
+
+### 2. Better IDE Support
+
+With TypeScript, you get:
+
+- **Intelligent code completion** - Know what properties and methods are available
+- **Refactoring support** - Safely rename symbols across your codebase
+- **Inline documentation** - Hover over symbols to see their types
+
+### 3. Self-Documenting Code
+
+Types serve as inline documentation:
+
+```typescript
+interface User {
+  id: string
+  name: string
+  email: string
+  createdAt: Date
+}
+
+function createUser(data: Omit<User, 'id' | 'createdAt'>): User {
+  return {
+    ...data,
+    id: crypto.randomUUID(),
+    createdAt: new Date()
+  }
+}
+```
+
+## TypeScript with React
+
+TypeScript shines when building React applications:
+
+```typescript
+interface ButtonProps {
+  variant: 'primary' | 'secondary' | 'danger'
+  size?: 'sm' | 'md' | 'lg'
+  children: React.ReactNode
+  onClick?: () => void
+}
+
+function Button({ variant, size = 'md', children, onClick }: ButtonProps) {
+  return (
+    <button className={`btn btn-${variant} btn-${size}`} onClick={onClick}>
+      {children}
+    </button>
+  )
+}
+```
+
+## Advanced Patterns
+
+### Generics
+
+Create reusable, type-safe components:
+
+```typescript
+function useLocalStorage<T>(key: string, initialValue: T) {
+  const [value, setValue] = useState<T>(() => {
+    const stored = localStorage.getItem(key)
+    return stored ? JSON.parse(stored) : initialValue
+  })
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value))
+  }, [key, value])
+
+  return [value, setValue] as const
+}
+```
+
+### Utility Types
+
+TypeScript provides powerful utility types:
+
+```typescript
+type Readonly<T> = { readonly [P in keyof T]: T[P] }
+type Partial<T> = { [P in keyof T]?: T[P] }
+type Pick<T, K extends keyof T> = { [P in K]: T[P] }
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+```
+
+## Conclusion
+
+TypeScript is an investment that pays dividends in code quality, developer experience, and maintainability. Start gradually by adding types to your existing JavaScript projects.
+6:Ta15,
+# Mastering Tailwind CSS for Modern UIs
+
+Tailwind CSS has transformed how developers approach styling. Instead of writing custom CSS, you compose designs using utility classes.
+
+## Why Tailwind?
+
+Traditional CSS approaches have challenges:
+
+- **Naming things is hard** - Coming up with class names for every element
+- **CSS grows indefinitely** - Stylesheets become bloated over time
+- **Fear of changes** - Worried about breaking existing styles
+
+Tailwind solves these by providing a constrained set of utilities.
+
+## Core Concepts
+
+### Utility-First
+
+Build complex components from small utility classes:
+
+```html
+<div class="flex items-center gap-4 rounded-lg bg-white p-6 shadow-md">
+  <img class="h-12 w-12 rounded-full" src="/avatar.jpg" alt="Avatar" />
+  <div>
+    <h3 class="text-lg font-semibold text-gray-900">John Doe</h3>
+    <p class="text-gray-600">Software Engineer</p>
+  </div>
+</div>
+```
+
+### Responsive Design
+
+Use breakpoint prefixes for responsive layouts:
+
+```html
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <!-- Cards -->
+</div>
+```
+
+### State Variants
+
+Style different states with prefixes:
+
+```html
+<button class="bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 active:bg-blue-700">
+  Click me
+</button>
+```
+
+## Best Practices
+
+### 1. Extract Components
+
+When patterns repeat, extract them into components:
+
+```tsx
+function Card({ children }) {
+  return (
+    <div className="rounded-xl bg-white p-6 shadow-lg">
+      {children}
+    </div>
+  )
+}
+```
+
+### 2. Use Design Tokens
+
+Configure your design system in `tailwind.config.js`:
+
+```javascript
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          50: '#eff6ff',
+          500: '#3b82f6',
+          900: '#1e3a8a',
+        }
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+```
+
+### 3. Dark Mode
+
+Tailwind makes dark mode simple:
+
+```html
+<div class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
+  Content that adapts to color scheme
+</div>
+```
+
+## Advanced Techniques
+
+### Arbitrary Values
+
+When you need one-off values:
+
+```html
+<div class="top-[117px] grid-cols-[1fr_2fr_1fr]">
+```
+
+### Group and Peer Modifiers
+
+Style children based on parent state:
+
+```html
+<div class="group">
+  <img class="transition group-hover:scale-110" />
+  <h3 class="group-hover:text-blue-500">Title</h3>
+</div>
+```
+
+## Conclusion
+
+Tailwind CSS offers a productive way to build modern interfaces. Its utility-first approach, combined with excellent documentation and tooling, makes it a joy to use.
+7:Tb88,
+# Building Scalable Design Systems
+
+A design system is a collection of reusable components, guided by clear standards, that can be assembled to build any number of applications.
+
+## Why Design Systems Matter
+
+### Consistency
+
+Users should have a familiar experience across your product:
+
+- Buttons look and behave the same everywhere
+- Typography follows a predictable hierarchy
+- Spacing and layout are harmonious
+
+### Efficiency
+
+Teams move faster with a shared vocabulary:
+
+- Designers don&apos;t reinvent the wheel for each feature
+- Developers have ready-made components
+- Less back-and-forth between design and engineering
+
+### Quality
+
+Centralized components are tested and accessible:
+
+- Accessibility is baked in once
+- Bug fixes propagate automatically
+- Performance optimizations benefit everyone
+
+## Core Components
+
+### Tokens
+
+Design tokens are the atomic values of your system:
+
+```javascript
+const tokens = {
+  colors: {
+    primary: '#0066cc',
+    secondary: '#6b7280',
+    success: '#10b981',
+    error: '#ef4444',
+  },
+  spacing: {
+    xs: '4px',
+    sm: '8px',
+    md: '16px',
+    lg: '24px',
+    xl: '32px',
+  },
+  typography: {
+    fontFamily: 'Inter, system-ui, sans-serif',
+    sizes: {
+      sm: '14px',
+      base: '16px',
+      lg: '18px',
+      xl: '24px',
+    }
+  }
+}
+```
+
+### Primitives
+
+Low-level building blocks:
+
+- **Box** - A flexible container with style props
+- **Text** - Typography component with variants
+- **Stack** - Vertical/horizontal spacing utility
+
+### Patterns
+
+Higher-level combinations:
+
+- **Card** - Content container with header, body, footer
+- **Modal** - Dialog overlay with focus management
+- **Form** - Input groups with validation
+
+## Implementation Strategy
+
+### 1. Audit Existing UI
+
+Document what you already have:
+
+- Screenshot every unique component
+- Note inconsistencies and variations
+- Identify the most-used patterns
+
+### 2. Define Principles
+
+Establish guidelines that guide decisions:
+
+- Accessibility is non-negotiable
+- Prefer composition over configuration
+- Keep the API surface small
+
+### 3. Build Incrementally
+
+Start small and expand:
+
+1. Design tokens
+2. Core primitives
+3. Common patterns
+4. Page templates
+
+### 4. Document Everything
+
+Great documentation includes:
+
+- **Usage guidelines** - When and how to use components
+- **Code examples** - Copy-paste snippets
+- **Do&apos;s and don&apos;ts** - Common mistakes to avoid
+- **Interactive playground** - Try components live
+
+## Governance
+
+### Versioning
+
+Use semantic versioning for your component library:
+
+- **Major** - Breaking changes
+- **Minor** - New features, backward compatible
+- **Patch** - Bug fixes
+
+### Contribution Process
+
+Define how components are added:
+
+1. Proposal with use cases
+2. Design review
+3. Implementation
+4. Documentation
+5. Release
+
+## Conclusion
+
+A design system is an investment that compounds over time. Start with the basics, iterate based on feedback, and maintain strong documentation.
+8:Tf83,
+# Understanding React Server Components
+
+React Server Components (RSC) represent a paradigm shift in how we build React applications. Let&apos;s explore what they are and how to use them effectively.
+
+## What Are Server Components?
+
+Server Components are React components that render exclusively on the server. They never ship JavaScript to the client and can directly access backend resources.
+
+### Key Characteristics
+
+- **Zero client-side JavaScript** - Smaller bundle sizes
+- **Direct backend access** - Database queries, file system
+- **Automatic code splitting** - Client components load on demand
+- **Streaming** - Progressive rendering
+
+## Server vs Client Components
+
+### Server Components (Default)
+
+```tsx
+// app/posts/page.tsx
+// This is a Server Component by default
+
+import { db } from '@/lib/database'
+
+export default async function PostsPage() {
+  const posts = await db.posts.findMany()
+  
+  return (
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+### Client Components
+
+```tsx
+"use client"
+
+// Must use "use client" directive for interactivity
+
+import { useState } from 'react'
+
+export function LikeButton({ postId }: { postId: string }) {
+  const [likes, setLikes] = useState(0)
+  
+  return (
+    <button onClick={() => setLikes(l => l + 1)}>
+      ❤️ {likes}
+    </button>
+  )
+}
+```
+
+## Composition Patterns
+
+### Passing Server Data to Client Components
+
+```tsx
+// Server Component
+async function PostPage({ id }: { id: string }) {
+  const post = await getPost(id)
+  
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+      {/* Client component receives serializable data */}
+      <LikeButton initialLikes={post.likes} postId={id} />
+    </article>
+  )
+}
+```
+
+### Children Pattern
+
+Pass Server Components as children to Client Components:
+
+```tsx
+// Server Component
+export default function Page() {
+  return (
+    <ClientWrapper>
+      {/* This Server Component renders on the server */}
+      <ExpensiveServerComponent />
+    </ClientWrapper>
+  )
+}
+```
+
+```tsx
+"use client"
+
+// Client Component
+export function ClientWrapper({ children }: { children: React.ReactNode }) {
+  const [isOpen, setIsOpen] = useState(false)
+  
+  return (
+    <div>
+      <button onClick={() => setIsOpen(!isOpen)}>Toggle</button>
+      {isOpen && children}
+    </div>
+  )
+}
+```
+
+## Performance Benefits
+
+### Before RSC
+
+```
+Page Load:
+1. Download HTML shell
+2. Download JavaScript bundle (including React, components, libraries)
+3. Hydrate components
+4. Fetch data from API
+5. Re-render with data
+```
+
+### With RSC
+
+```
+Page Load:
+1. Server renders HTML with data
+2. Stream HTML to client
+3. Download only Client Component JavaScript
+4. Hydrate only interactive parts
+```
+
+## Best Practices
+
+### 1. Default to Server Components
+
+Only add `"use client"` when you need:
+
+- Event handlers (onClick, onChange)
+- useState, useEffect, or other hooks
+- Browser-only APIs
+
+### 2. Keep Client Components Small
+
+Push interactivity to the leaves of your component tree:
+
+```tsx
+// ❌ Don't make the whole page a Client Component
+"use client"
+export default function Page() { ... }
+
+// ✅ Only make interactive parts Client Components
+export default function Page() {
+  return (
+    <article>
+      <StaticContent />
+      <InteractiveWidget /> {/* Only this is "use client" */}
+    </article>
+  )
+}
+```
+
+### 3. Colocate Data Fetching
+
+Fetch data where it&apos;s needed:
+
+```tsx
+async function UserProfile({ userId }: { userId: string }) {
+  const user = await getUser(userId)
+  return <div>{user.name}</div>
+}
+
+async function UserPosts({ userId }: { userId: string }) {
+  const posts = await getUserPosts(userId)
+  return <PostList posts={posts} />
+}
+```
+
+## Conclusion
+
+React Server Components offer a powerful new model for building performant React applications. By understanding when to use Server vs Client Components, you can create faster, more efficient user experiences.
+0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"min-h-screen bg-background","children":["$","div",null,{"className":"mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8","children":[["$","header",null,{"className":"mb-12 text-center","children":[["$","h1",null,{"className":"text-balance text-4xl font-bold tracking-tight sm:text-5xl","children":"Harkyoo's Blog"}],["$","p",null,{"className":"mt-4 text-pretty text-lg text-muted-foreground","children":"Thoughts, tutorials, and insights on modern web development"}]]}],["$","$L2",null,{"posts":[{"frontmatter":{"title":"Prompt Engineering Fundamentals for Reliable AI Outputs","slug":"prompt-engineering-fundamentals","summary":"Learn practical prompt engineering techniques for getting more accurate, structured, and repeatable results from modern AI systems.","date":"2026-04-21","tags":["prompt-engineering"],"thumbnail":"/images/prompt-engineering-thumbnail.png","relatedPosts":["building-with-typescript","react-server-components","getting-started-with-nextjs"]},"content":"$3","readingTime":"5 min read"},{"frontmatter":{"title":"Getting Started with Next.js 16","slug":"getting-started-with-nextjs","summary":"Learn the fundamentals of Next.js 16 and build your first modern web application with the App Router.","date":"2026-04-15","tags":["Next.js","React","Web Development"],"thumbnail":"/images/nextjs-thumbnail.jpg","relatedPosts":["building-with-typescript","mastering-tailwind-css"]},"content":"$4","readingTime":"2 min read"},{"frontmatter":{"title":"Building Type-Safe Applications with TypeScript","slug":"building-with-typescript","summary":"Discover how TypeScript can improve your development workflow with static typing, better tooling, and fewer runtime errors.","date":"2026-04-10","tags":["TypeScript","JavaScript","Web Development"],"thumbnail":"/images/typescript-thumbnail.jpg","relatedPosts":["getting-started-with-nextjs","prompt-engineering-fundamentals"]},"content":"$5","readingTime":"2 min read"},{"frontmatter":{"title":"Mastering Tailwind CSS for Modern UIs","slug":"mastering-tailwind-css","summary":"A comprehensive guide to building beautiful, responsive user interfaces with Tailwind CSS utility classes.","date":"2026-04-05","tags":["CSS","Tailwind","Web Development","Design"],"thumbnail":"/images/tailwind-thumbnail.jpg","relatedPosts":["getting-started-with-nextjs","design-systems-guide"]},"content":"$6","readingTime":"2 min read"},{"frontmatter":{"title":"Building Scalable Design Systems","slug":"design-systems-guide","summary":"Learn how to create and maintain a design system that scales with your team and product.","date":"2026-03-28","tags":["Design","UI/UX","Components"],"thumbnail":"/images/design-systems-thumbnail.jpg","relatedPosts":["mastering-tailwind-css"]},"content":"$7","readingTime":"3 min read"},{"frontmatter":{"title":"Understanding React Server Components","slug":"react-server-components","summary":"Deep dive into React Server Components, how they work, and when to use them in your applications.","date":"2026-03-20","tags":["React","Next.js","Performance"],"thumbnail":"/images/rsc-thumbnail.jpg","relatedPosts":["getting-started-with-nextjs","building-with-typescript","prompt-engineering-fundamentals"]},"content":"$8","readingTime":"3 min read"}],"tags":["CSS","Components","Design","JavaScript","Next.js","Performance","React","Tailwind","TypeScript","UI/UX","Web Development","prompt-engineering"]}]]}]}],["$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"gmEPdmxv__7e81bG8Y-ew"}
+9:["$","script","script-0",{"src":"/v0-next-js-blog/_next/static/chunks/01j9r7hdna_aw.js","async":true}]
+a:["$","script","script-1",{"src":"/v0-next-js-blog/_next/static/chunks/11qrehx~p06m..js","async":true}]
+b:["$","$Lc",null,{"children":["$","$d",null,{"name":"Next.MetadataOutlet","children":"$@e"}]}]
+e:null
