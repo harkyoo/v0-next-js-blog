@@ -15,7 +15,7 @@ export default function BlogPage() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <header className="mb-12 text-center">
           <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl">
-            Blog
+            Harkyoo&apos;s Blog
           </h1>
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
             Thoughts, tutorials, and insights on modern web development
